@@ -1,0 +1,14 @@
+version: "3"
+services:
+  mongodb-container:
+    image: mongo:latest
+    container_name: "mongodb-container"
+    ports:
+      - 27017:27017
+  spring-mongo-container-one:
+    image: spring-mongo
+    container_name: spring-mongo-container
+    ports:
+      - 8080:8080
+    links:
+      - mongodb-container
