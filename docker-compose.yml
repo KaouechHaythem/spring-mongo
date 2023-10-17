@@ -6,7 +6,7 @@ services:
     ports:
       - 27017:27017
   spring-mongo-container-one:
-    image: spring-mongo
+    image: haythemkaouech/spring-mongo:latest
     container_name: spring-mongo-container
     ports:
       - 8080:8080
