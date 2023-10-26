@@ -1,0 +1,36 @@
+- name: Manage Docker Containers on Local Machine
+  hosts: localhost
+  tasks:
+    - name: Create a Docker network
+      docker_network:
+        name: spring-mongo-network
+
+    - name: Pull MongoDB Docker image
+      docker_image:
+        name: mongo:latest
+        state: present
+
+    - name: Run MongoDB container
+      docker_container:
+        name: mongodb-container
+        image: mongo:latest
+        state: started
+        ports:
+          - "27017:27017"
+        networks:
+          - name: spring-mongo-network
+
+    - name: Pull Spring Boot Docker image
+      docker_image:
+        name: haythemkaouech/spring-mongo:latest
+        state: present
+
+    - name: Run Spring Boot container
+      docker_container:
+        name: spring-mongo-container
+        image: haythemkaouech/spring-mongo:latest
+        state: started
+        ports:
+          - "8900:8080"
+        networks:
+          - name: spring-mongo-network

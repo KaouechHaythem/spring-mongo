@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    tools {
+        maven "maven"
+        dockerTool "docker"
+    }
+
+    stages {
+        stage('Pull') {
+            steps {
+                git branch: 'main', url: 'https://github.com/KaouechHaythem/spring-mongo'
+            }
+
+            
+        }
+        stage('maven build') {
+            steps {
+                sh 'mvn clean install'
+
+            }
+        }
+        stage('docker build and push') {
+            steps {
+                script{
+                    withDockerRegistry(credentialsId: 'dockerhub-creds-id', toolName: 'docker') {
+                       sh 'docker build -t haythemkaouech/spring-mongo:latest .' 
+                       sh 'docker push haythemkaouech/spring-mongo:latest'
+                      
+
+}
+                }
+            }
+        }
+         stage('Run Ansible Playbook') {
+            steps {
+                git branch: 'main', url: 'https://github.com/KaouechHaythem/spring-mongo-ansible-playbook'
+
+                script {
+                    ansiblePlaybook(
+                        colorized: true,
+                        playbook: 'mongo-db-playbook.yml'
+                    )
+                }
+            }
+        }
+    }
+}
