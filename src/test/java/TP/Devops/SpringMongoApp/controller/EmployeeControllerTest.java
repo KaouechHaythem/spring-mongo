@@ -32,8 +32,8 @@ public class EmployeeControllerTest {
     void testGetAllEmployees() throws Exception {
         // Mock data
         List<Employee> employees = Arrays.asList(
-                new Employee(1L,"test","test","test","test","test","test1"),
-                new Employee(2L,"test","test","test","test","test","test2")
+                new Employee("1","test","test","test","test","test","test1"),
+                new Employee("2","test","test","test","test","test","test2")
         );
 
         // Mock the service method to return the above data

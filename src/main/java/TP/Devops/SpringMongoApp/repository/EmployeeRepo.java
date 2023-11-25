@@ -4,8 +4,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface EmployeeRepo extends MongoRepository<Employee, Long> {
-    void deleteEmployeeById(Long id);
+public interface EmployeeRepo extends MongoRepository<Employee, String> {
+    void deleteEmployeeById(String id);
 
-    Optional<Employee> findEmployeeById(Long id);
+    Optional<Employee> findEmployeeById(String id);
 }

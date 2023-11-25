@@ -29,7 +29,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Employee> getEmployeeById (@PathVariable("id") Long id) {
+    public ResponseEntity<Employee> getEmployeeById (@PathVariable("id") String id) {
         Employee employee = employeeService.findEmployeeById(id);
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
@@ -47,7 +47,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id) {
+    public ResponseEntity<?> deleteEmployee(@PathVariable("id") String id) {
         employeeService.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
