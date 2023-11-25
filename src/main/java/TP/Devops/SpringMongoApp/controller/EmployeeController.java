@@ -19,6 +19,8 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
+    @CrossOrigin(origins = "http://spring-boot-service.com")
+
     @GetMapping("/all")
     public ResponseEntity<List<Employee>> getAllEmployees () {
         List<Employee> employees = employeeService.findAllEmployees();
