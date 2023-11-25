@@ -19,7 +19,6 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-    @CrossOrigin(origins = "http://20.88.170.197")
     @GetMapping("/all")
     public ResponseEntity<List<Employee>> getAllEmployees () {
         List<Employee> employees = employeeService.findAllEmployees();
