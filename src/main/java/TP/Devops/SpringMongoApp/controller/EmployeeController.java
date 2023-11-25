@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/employee")
-@CrossOrigin(origins = "http://www.spring-mongo.xyz")
+@CrossOrigin(origins = {"http://www.spring-mongo.xyz","http://spring-mongo.xyz"})
 public class EmployeeController {
     @Autowired
     private  EmployeeService employeeService;
