@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/employee")
+@CrossOrigin(origins = "http://spring-boot-service.com")
 public class EmployeeController {
     @Autowired
     private  EmployeeService employeeService;
@@ -19,7 +20,7 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-    @CrossOrigin(origins = "http://spring-boot-service.com")
+
 
     @GetMapping("/all")
     public ResponseEntity<List<Employee>> getAllEmployees () {
